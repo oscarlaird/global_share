@@ -2,7 +2,7 @@ import pyautogui
 from time import sleep
 from pathlib import Path
 
-subject = 'AP US History (APUSH)'
+subject = 'AP World History'
 
 essay_prompt = f''' Write a 350 word article for the {subject} test. Make the introduction and conclusion very short (at most one sentence) or just skip the introduction and conclusion altogether. Nevertheless have a logical organization to your article -- break it into sections -- don't just spit out a list of facts. Use advanced vocabulary (college level). Include lots of specific examples, names, and dates which help contribute to the main points.
 
@@ -32,7 +32,7 @@ Write 6 multiple choice questions based on the article you just wrote. Write a c
 topic_id
 question
 correct_answer
-answers (JSON list of 5 answers; answers should not be numbered or lettered; answers should be simple text and not prefixed with a number 1-5 nor letter A-E; the correct answer must always come first in the list. Even if the correct answer is 'all of the above' that would need to come first in the list of five. The correct answer is always first. The next four answers are wrong.)
+answers (JSON list of 5 answers; answers should not be numbered or lettered; answers should be simple text and not prefixed with a number 1-5 nor letter A-E; the correct answer must always come first in the list. Even if the correct answer is 'all of the above' that would need to come first in the list of five. The correct answer is always first. The next four answers are always wrong. Multiple choice questions must have one and only one right answer.)
 explanation (one or two sentences elaborating on the correct answer and why it is correct; add new, interesting information about the correct answer. DO NOT rephrase the question.)
 
 The questions should be challenging. Equally difficult as the AP test. Ideally most of the questions can be answered based off reading the article.
@@ -60,11 +60,11 @@ def shift_write(text):
 print('please hover over the appropriate window...')
 sleep(4)
 
-model = 4
-delay = 45 if model==3.5 else 8.1*60
-topics = Path('/home/oscar/dolts/dolt_apush/topicslist').read_text().splitlines()
-for i, topic in enumerate(topics, start=1):
-    if i<=32:
+model = 3.5
+delay = 45 if model==3.5 else 8*60
+topics = Path('./topicslist').read_text().splitlines()
+for i, topic in enumerate(topics, start=0):
+    if i<=0:
         continue
     # pyautogui.hotkey('ctrl', 's')
     # sleep(2)
